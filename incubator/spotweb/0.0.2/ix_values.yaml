@@ -1,0 +1,27 @@
+image:
+  repository: jgeusebroek/spotweb
+  pullPolicy: IfNotPresent
+  tag: 20210328@sha256:e41482a844d8e5582239868d61ef8335dba156fa39d3f1c8ddc762ab214cf5b9
+
+env:
+  SPOTWEB_DB_TYPE: pdo_mysql
+  SPOTWEB_DB_HOST: "<database_server_hostname>"
+  SPOTWEB_DB_PORT: "<database_port>"
+  SPOTWEB_DB_NAME: spotweb
+  SPOTWEB_DB_USER: spotweb
+  SPOTWEB_DB_PASS: spotweb
+
+service:
+  main:
+    ports:
+      main:
+        targetPort: 80
+        port: 80
+
+ingress:
+  enabled: false
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"

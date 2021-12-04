@@ -4,7 +4,7 @@
 
 ##### Scan Results
 
-2021-12-04T15:19:08.784Z	[34mINFO[0m	Detected config files: 0
+2021-12-04T23:36:14.845Z	[34mINFO[0m	Detected config files: 0
 
 | No Vulnerabilities found         |
 |:---------------------------------|

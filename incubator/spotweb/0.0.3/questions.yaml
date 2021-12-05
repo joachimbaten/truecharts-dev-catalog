@@ -68,41 +68,48 @@ questions:
     schema:
       type: dict
       attrs:
-        - variable: type
-          description: "Please specify type of workload to deploy"
-          label: "(Advanced) Controller Type"
+        - variable: advanced
+          label: "Show Advanced Controller Settings"
           schema:
-            type: string
-            default: "deployment"
-            required: true
-            enum:
-              - value: "deployment"
-                description: "Deployment"
-              - value: "statefulset"
-                description: "Statefulset"
-              - value: "daemonset"
-                description: "Daemonset"
-        - variable: replicas
-          description: "Number of desired pod replicas"
-          label: "Desired Replicas"
-          schema:
-            type: int
-            default: 1
-            required: true
-        - variable: strategy
-          description: "Please specify type of workload to deploy"
-          label: "(Advanced) Update Strategy"
-          schema:
-            type: string
-            default: "Recreate"
-            required: true
-            enum:
-              - value: "Recreate"
-                description: "Recreate: Kill existing pods before creating new ones"
-              - value: "RollingUpdate"
-                description: "RollingUpdate: Create new pods and then kill old ones"
-              - value: "OnDelete"
-                description: "(Legacy) OnDelete: ignore .spec.template changes"
+            type: boolean
+            default: false
+            show_subquestions_if: true
+            subquestions:
+              - variable: type
+                description: "Please specify type of workload to deploy"
+                label: "(Advanced) Controller Type"
+                schema:
+                  type: string
+                  default: "deployment"
+                  required: true
+                  enum:
+                    - value: "deployment"
+                      description: "Deployment"
+                    - value: "statefulset"
+                      description: "Statefulset"
+                    - value: "daemonset"
+                      description: "Daemonset"
+              - variable: replicas
+                description: "Number of desired pod replicas"
+                label: "Desired Replicas"
+                schema:
+                  type: int
+                  default: 1
+                  required: true
+              - variable: strategy
+                description: "Please specify type of workload to deploy"
+                label: "(Advanced) Update Strategy"
+                schema:
+                  type: string
+                  default: "Recreate"
+                  required: true
+                  enum:
+                    - value: "Recreate"
+                      description: "Recreate: Kill existing pods before creating new ones"
+                    - value: "RollingUpdate"
+                      description: "RollingUpdate: Create new pods and then kill old ones"
+                    - value: "OnDelete"
+                      description: "(Legacy) OnDelete: ignore .spec.template changes"
         - variable: expert
           label: "Show Expert Configuration Options"
           schema:
@@ -167,7 +174,6 @@ questions:
                             label: "Value"
                             schema:
                               type: string
-
   - variable: env
     group: "Container Configuration"
     label: "Image Environment"
@@ -187,54 +193,6 @@ questions:
           schema:
             type: string
             default: "002"
-        - variable: SPOTWEB_DB_TYPE
-          label: "SPOTWEB DB TYPE"
-          schema:
-            type: string
-            default: pdo_pgsql
-            required: true
-            enum:
-              - value: pdo_pgsql
-                description: "PostgreSQL"
-              - value: pdo_mysql
-                description: MySQL
-        - variable: SPOTWEB_DB_HOST
-          label: "The database hostname / IP"
-          schema:
-            type: string
-            required: true
-        - variable: SPOTWEB_DB_PORT
-          label: "The database port"
-          schema:
-            type: int
-            default: 5432
-            required: true
-        - variable: SPOTWEB_DB_NAME
-          label: "The database used for spotweb"
-          schema:
-            type: string
-            default: "spotweb"
-            required: true
-        - variable: SPOTWEB_DB_USER
-          label: "The database server username"
-          schema:
-            type: string
-            required: true
-        - variable: SPOTWEB_DB_PASS
-          label: "The database server password"
-          schema:
-            type: string
-            required: true
-        - variable: SPOTWEB_CRON_RETRIEVE
-          label: "Cron schedule for article retrieval. E.g. */15 * * * * for every fifteen minutes."
-          schema:
-            type: string
-            default: "*/15 * * * *"
-        - variable: SPOTWEB_CRON_CACHE_CHECK
-          label: "Cron schedule for article cache sanity check. E.g. 10 */1 * * * for 10 minutes after every hour."
-          schema:
-            type: string
-            default: "10 */1 * * *"
 
   - variable: envList
     label: "Image environment"
@@ -317,6 +275,54 @@ questions:
                       label: "Value"
                       schema:
                         type: string
+        - variable: SPOTWEB_DB_TYPE
+          label: "SPOTWEB DB TYPE"
+          schema:
+            type: string
+            default: pdo_pgsql
+            required: true
+            enum:
+              - value: pdo_pgsql
+                description: "PostgreSQL"
+              - value: pdo_mysql
+                description: MySQL
+        - variable: SPOTWEB_DB_HOST
+          label: "The database hostname / IP"
+          schema:
+            type: string
+            required: true
+        - variable: SPOTWEB_DB_PORT
+          label: "The database port"
+          schema:
+            type: int
+            default: 5432
+            required: true
+        - variable: SPOTWEB_DB_NAME
+          label: "The database used for spotweb"
+          schema:
+            type: string
+            default: "spotweb"
+            required: true
+        - variable: SPOTWEB_DB_USER
+          label: "The database server username"
+          schema:
+            type: string
+            required: true
+        - variable: SPOTWEB_DB_PASS
+          label: "The database server password"
+          schema:
+            type: string
+            required: true
+        - variable: SPOTWEB_CRON_RETRIEVE
+          label: "Cron schedule for article retrieval. E.g. */15 * * * * for every fifteen minutes."
+          schema:
+            type: string
+            default: "*/15 * * * *"
+        - variable: SPOTWEB_CRON_CACHE_CHECK
+          label: "Cron schedule for article cache sanity check. E.g. 10 */1 * * * for 10 minutes after every hour."
+          schema:
+            type: string
+            default: "10 */1 * * *"
 
   - variable: service
     group: "Networking and Services"
@@ -414,7 +420,7 @@ questions:
                                   description: "This port gets exposed to the node. Only considered when service type is NodePort, Simple or LoadBalancer"
                                   schema:
                                     type: int
-                                    min: 80
+                                    min: 9000
                                     max: 65535
                                 - variable: targetPort
                                   label: "Target Port"
@@ -422,6 +428,21 @@ questions:
                                   schema:
                                     type: int
                                     default: 80
+
+  - variable: serviceexpert
+    group: "Networking and Services"
+    label: "Show Expert Config"
+    schema:
+      type: boolean
+      default: false
+      show_subquestions_if: true
+      subquestions:
+        - variable: hostNetwork
+          group: "Networking and Services"
+          label: "Host-Networking (Complicated)"
+          schema:
+            type: boolean
+            default: false
 
         - variable: dnsPolicy
           group: "Networking and Services"
@@ -779,7 +800,6 @@ questions:
                                   label: "Value"
                                   schema:
                                     type: string
-
   - variable: persistenceList
     label: "Additional app storage"
     group: "Storage and Persistence"
@@ -1302,6 +1322,7 @@ questions:
                         type: string
                         default: ""
                         required: true
+
   - variable: advancedSecurity
     label: "Show Advanced Security Settings"
     group: "Security and Permissions"

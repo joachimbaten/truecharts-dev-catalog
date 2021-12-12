@@ -3,7 +3,7 @@ appVersion: "20210328"
 dependencies:
 - name: common
   repository: https://truecharts.org
-  version: 8.9.10
+  version: 8.9.18
 deprecated: false
 description: Spotweb is a decentralized usenet community based on the Spotnet protocol.
 home: https://github.com/truecharts/apps/master/charts/incubator/spotweb

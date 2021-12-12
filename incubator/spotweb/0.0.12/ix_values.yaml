@@ -1,0 +1,55 @@
+image:
+  repository: jgeusebroek/spotweb
+  pullPolicy: IfNotPresent
+  tag: 20210328@sha256:e41482a844d8e5582239868d61ef8335dba156fa39d3f1c8ddc762ab214cf5b9
+
+# See more environment variables in the babybuddy documentation
+# https://github.com/linuxserver/docker-babybuddy#parameters
+env: {}
+  # TZ:
+
+envTpl:
+  SPOTWEB_DB_TYPE: "pdo_pgsql"
+  SPOTWEB_DB_NAME: "{{ .Values.postgresql.postgresqlDatabase }}"
+  SPOTWEB_DB_USER: "{{ .Values.postgresql.postgresqlUsername }}"
+  SPOTWEB_DB_PORT: "5432"
+  # SPOTWEB_DB_PASS: "spotweb"
+  # SPOTWEB_DB_HOST: "spotweb-db.ix-spotweb"
+
+envValueFrom:
+  SPOTWEB_DB_PASS:
+    secretKeyRef:
+      name: dbcreds
+      key: postgresql-password
+  SPOTWEB_DB_HOST:
+    secretKeyRef:
+      name: dbcreds
+      key: plainhost
+
+securityContext:
+  readOnlyRootFilesystem: false
+  allowPrivilegeEscalation: false
+  runAsNonRoot: false
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+service:
+  main:
+    ports:
+      main:
+        port: 11000
+        targetPort: 80
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+
+# Enabled postgres
+postgresql:
+  enabled: true
+  existingSecret: "dbcreds"
+  postgresqlUsername: spotweb
+  postgresqlDatabase: spotweb

@@ -1,6 +1,11 @@
 # Changelog<br>
 
 
+<a name="spotweb-0.0.19"></a>
+### spotweb-0.0.19 (2021-12-12)
+
+
+
 <a name="spotweb-0.0.18"></a>
 ### spotweb-0.0.18 (2021-12-12)
 

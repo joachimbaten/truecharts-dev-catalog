@@ -40,12 +40,12 @@ initContainers:
       SPOTWEB_DB_NAME: "{{ .Values.postgresql.postgresqlDatabase }}"
       SPOTWEB_DB_USER: "{{ .Values.postgresql.postgresqlUsername }}"
       SPOTWEB_DB_PORT: "5432"
-      - name: SPOTWEB_DB_PASS
+      SPOTWEB_DB_PASS:
         valueFrom:
           secretKeyRef:
             name: dbcreds
             key: postgresql-password
-      - name: SPOTWEB_DB_HOST
+      SPOTWEB_DB_HOST:
         valueFrom:
           secretKeyRef:
             name: dbcreds

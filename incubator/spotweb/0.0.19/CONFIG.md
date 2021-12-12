@@ -1,6 +1,6 @@
 # spotweb
 
-![Version: 0.0.17](https://img.shields.io/badge/Version-0.0.17-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 20210328](https://img.shields.io/badge/AppVersion-20210328-informational?style=flat-square)
+![Version: 0.0.19](https://img.shields.io/badge/Version-0.0.19-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: php8.1](https://img.shields.io/badge/AppVersion-php8.1-informational?style=flat-square)
 
 Spotweb is a decentralized usenet community based on the Spotnet protocol.
 
@@ -41,22 +41,22 @@ Kubernetes: `>=1.16.0-0`
 | envValueFrom.SPOTWEB_DB_PASS.secretKeyRef.name | string | `"dbcreds"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"jgeusebroek/spotweb"` |  |
-| image.tag | string | `"20210328@sha256:e41482a844d8e5582239868d61ef8335dba156fa39d3f1c8ddc762ab214cf5b9"` |  |
+| image.tag | string | `"php8.1@sha256:9970d2a23b1bfb3ca7736ed9c544320df843546fc7c76f6e7c0a7034adfe1148"` |  |
 | initContainers.1-init-db.command[0] | string | `"php /var/www/spotweb/bin/upgrade-db.php -reset-password admin -set-systemtype single"` |  |
+| initContainers.1-init-db.env.SPOTWEB_DB_HOST.valueFrom.secretKeyRef.key | string | `"plainhost"` |  |
+| initContainers.1-init-db.env.SPOTWEB_DB_HOST.valueFrom.secretKeyRef.name | string | `"dbcreds"` |  |
 | initContainers.1-init-db.env.SPOTWEB_DB_NAME | string | `"{{ .Values.postgresql.postgresqlDatabase }}"` |  |
+| initContainers.1-init-db.env.SPOTWEB_DB_PASS.valueFrom.secretKeyRef.key | string | `"postgresql-password"` |  |
+| initContainers.1-init-db.env.SPOTWEB_DB_PASS.valueFrom.secretKeyRef.name | string | `"dbcreds"` |  |
 | initContainers.1-init-db.env.SPOTWEB_DB_PORT | string | `"5432"` |  |
 | initContainers.1-init-db.env.SPOTWEB_DB_TYPE | string | `"pdo_pgsql"` |  |
 | initContainers.1-init-db.env.SPOTWEB_DB_USER | string | `"{{ .Values.postgresql.postgresqlUsername }}"` |  |
-| initContainers.1-init-db.envFrom.SPOTWEB_DB_HOST.secretKeyRef.key | string | `"plainhost"` |  |
-| initContainers.1-init-db.envFrom.SPOTWEB_DB_HOST.secretKeyRef.name | string | `"dbcreds"` |  |
-| initContainers.1-init-db.envFrom.SPOTWEB_DB_PASS.secretKeyRef.key | string | `"postgresql-password"` |  |
-| initContainers.1-init-db.envFrom.SPOTWEB_DB_PASS.secretKeyRef.name | string | `"dbcreds"` |  |
 | initContainers.1-init-db.image | string | `"{{ .Values.image.repository }}:{{ .Values.image.tag }}"` |  |
-| initContainers.1-init-db.podSecurityContext.runAsGroup | int | `0` |  |
-| initContainers.1-init-db.podSecurityContext.runAsUser | int | `0` |  |
 | initContainers.1-init-db.securityContext.allowPrivilegeEscalation | bool | `false` |  |
 | initContainers.1-init-db.securityContext.readOnlyRootFilesystem | bool | `false` |  |
+| initContainers.1-init-db.securityContext.runAsGroup | int | `0` |  |
 | initContainers.1-init-db.securityContext.runAsNonRoot | bool | `false` |  |
+| initContainers.1-init-db.securityContext.runAsUser | int | `0` |  |
 | persistence.config.enabled | bool | `true` |  |
 | persistence.config.mountPath | string | `"/config"` |  |
 | podSecurityContext.runAsGroup | int | `0` |  |

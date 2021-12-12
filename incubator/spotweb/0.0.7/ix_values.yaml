@@ -26,12 +26,12 @@ envValueFrom:
 
 securityContext:
   readOnlyRootFilesystem: false
-  allowPrivilegeEscalation: false
+  allowPrivilegeEscalation: true
   runAsNonRoot: false
 
 podSecurityContext:
-  runAsUser: 568
-  runAsGroup: 568
+  runAsUser: 0
+  runAsGroup: 0
 
 service:
   main:

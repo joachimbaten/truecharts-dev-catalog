@@ -36,12 +36,12 @@ initContainers:
       readOnlyRootFilesystem: false
       allowPrivilegeEscalation: false
       runAsNonRoot: false
-    envTpl:
+    env:
       SPOTWEB_DB_TYPE: "pdo_pgsql"
       SPOTWEB_DB_NAME: "{{ .Values.postgresql.postgresqlDatabase }}"
       SPOTWEB_DB_USER: "{{ .Values.postgresql.postgresqlUsername }}"
       SPOTWEB_DB_PORT: "5432"
-    envValueFrom:
+    envFrom:
       SPOTWEB_DB_PASS:
         secretKeyRef:
           name: dbcreds

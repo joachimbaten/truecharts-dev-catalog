@@ -285,7 +285,7 @@ questions:
       attrs:
         - variable: main
           label: "Main Service"
-          description: "The Primary service on which the healthcheck runs, often the webUI"
+          description: "Spotweb Web UI and API endpoint"
           schema:
             type: dict
             attrs:
@@ -335,7 +335,7 @@ questions:
                   type: dict
                   attrs:
                     - variable: main
-                      label: "Main Service Port Configuration"
+                      label: "Web Interface"
                       schema:
                         type: dict
                         attrs:
@@ -646,6 +646,7 @@ questions:
                   type: string
                   default: "/config"
                   hidden: true
+                  valid_chars: '^\/([a-zA-Z0-9._-]+(\s?[a-zA-Z0-9._-]+|\/?))+$'
               - variable: medium
                 label: "EmptyDir Medium"
                 schema:

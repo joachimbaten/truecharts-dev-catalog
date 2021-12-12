@@ -1,6 +1,6 @@
 # spotweb
 
-![Version: 0.0.7](https://img.shields.io/badge/Version-0.0.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 20210328](https://img.shields.io/badge/AppVersion-20210328-informational?style=flat-square)
+![Version: 0.0.8](https://img.shields.io/badge/Version-0.0.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 20210328](https://img.shields.io/badge/AppVersion-20210328-informational?style=flat-square)
 
 Spotweb is a decentralized usenet community based on the Spotnet protocol.
 
@@ -51,7 +51,7 @@ Kubernetes: `>=1.16.0-0`
 | postgresql.existingSecret | string | `"dbcreds"` |  |
 | postgresql.postgresqlDatabase | string | `"spotweb"` |  |
 | postgresql.postgresqlUsername | string | `"spotweb"` |  |
-| securityContext.allowPrivilegeEscalation | bool | `true` |  |
+| securityContext.allowPrivilegeEscalation | bool | `false` |  |
 | securityContext.readOnlyRootFilesystem | bool | `false` |  |
 | securityContext.runAsNonRoot | bool | `false` |  |
 | service.main.ports.main.port | int | `11000` |  |

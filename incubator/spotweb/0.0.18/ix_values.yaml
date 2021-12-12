@@ -1,7 +1,7 @@
 image:
   repository: jgeusebroek/spotweb
   pullPolicy: IfNotPresent
-  tag: 20210328@sha256:e41482a844d8e5582239868d61ef8335dba156fa39d3f1c8ddc762ab214cf5b9
+  tag: php8.1@sha256:9970d2a23b1bfb3ca7736ed9c544320df843546fc7c76f6e7c0a7034adfe1148
 
 # See more environment variables in the babybuddy documentation
 # https://hub.docker.com/r/jgeusebroek/spotweb
@@ -29,10 +29,9 @@ initContainers:
   1-init-db:
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
     command: ["php /var/www/spotweb/bin/upgrade-db.php -reset-password admin -set-systemtype single"]
-    podSecurityContext:
+    securityContext:
       runAsUser: 0
       runAsGroup: 0
-    securityContext:
       readOnlyRootFilesystem: false
       allowPrivilegeEscalation: false
       runAsNonRoot: false
@@ -41,15 +40,16 @@ initContainers:
       SPOTWEB_DB_NAME: "{{ .Values.postgresql.postgresqlDatabase }}"
       SPOTWEB_DB_USER: "{{ .Values.postgresql.postgresqlUsername }}"
       SPOTWEB_DB_PORT: "5432"
-    envFrom:
-      SPOTWEB_DB_PASS:
-        secretKeyRef:
-          name: dbcreds
-          key: postgresql-password
-      SPOTWEB_DB_HOST:
-        secretKeyRef:
-          name: dbcreds
-          key: plainhost
+      - name: SPOTWEB_DB_PASS
+        valueFrom:
+          secretKeyRef:
+            name: dbcreds
+            key: postgresql-password
+      - name: SPOTWEB_DB_HOST
+        valueFrom:
+          secretKeyRef:
+            name: dbcreds
+            key: plainhost
 
 securityContext:
   readOnlyRootFilesystem: false

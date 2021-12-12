@@ -51,7 +51,7 @@ persistence:
 
 # Enabled postgres
 postgresql:
-  enabled: false
+  enabled: true
   existingSecret: "dbcreds"
   postgresqlUsername: spotweb
   postgresqlDatabase: spotweb

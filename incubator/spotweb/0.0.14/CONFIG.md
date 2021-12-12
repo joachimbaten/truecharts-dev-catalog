@@ -1,6 +1,6 @@
 # spotweb
 
-![Version: 0.0.13](https://img.shields.io/badge/Version-0.0.13-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 337](https://img.shields.io/badge/AppVersion-337-informational?style=flat-square)
+![Version: 0.0.14](https://img.shields.io/badge/Version-0.0.14-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 337](https://img.shields.io/badge/AppVersion-337-informational?style=flat-square)
 
 Spotweb is a decentralized usenet community based on the Spotnet protocol.
 
@@ -36,14 +36,14 @@ Kubernetes: `>=1.16.0-0`
 | envTpl.DB_PORT | string | `"3306"` |  |
 | envTpl.DB_USER | string | `"{{ .Values.mariadb.mariadbDatabase }}"` |  |
 | envValueFrom.DB_HOST.secretKeyRef.key | string | `"plainporthost"` |  |
-| envValueFrom.DB_HOST.secretKeyRef.name | string | `"dbcreds"` |  |
+| envValueFrom.DB_HOST.secretKeyRef.name | string | `"mariadbcreds"` |  |
 | envValueFrom.DB_PASS.secretKeyRef.key | string | `"mariadb-password"` |  |
-| envValueFrom.DB_PASS.secretKeyRef.name | string | `"dbcreds"` |  |
+| envValueFrom.DB_PASS.secretKeyRef.name | string | `"mariadbcreds"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"erikdevries/spotweb"` |  |
 | image.tag | string | `"337@sha256:0fa717378ca1c036d5fdaebdd27d2716b3404eb16b185e79392620fbb30be7eb"` |  |
 | mariadb.enabled | bool | `true` |  |
-| mariadb.existingSecret | string | `"dbcreds"` |  |
+| mariadb.existingSecret | string | `"mariadbcreds"` |  |
 | mariadb.mariadbDatabase | string | `"spotweb"` |  |
 | mariadb.mariadbUsername | string | `"spotweb"` |  |
 | podSecurityContext.runAsGroup | int | `0` |  |

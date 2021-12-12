@@ -17,11 +17,11 @@ envTpl:
 envValueFrom:
   DB_PASS:
     secretKeyRef:
-      name: dbcreds
+      name: mariadbcreds
       key: mariadb-password
   DB_HOST:
     secretKeyRef:
-      name: dbcreds
+      name: mariadbcreds
       key: plainporthost
 
 securityContext:
@@ -43,6 +43,6 @@ service:
 # Enabled mysql/mariadb
 mariadb:
   enabled: true
-  existingSecret: "dbcreds"
+  existingSecret: "mariadbcreds"
   mariadbUsername: spotweb
   mariadbDatabase: spotweb

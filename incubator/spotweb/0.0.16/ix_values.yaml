@@ -25,6 +25,32 @@ envValueFrom:
       name: dbcreds
       key: plainhost
 
+initContainers:
+  1-init-db:
+    image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+    command: ["php /var/www/spotweb/bin/upgrade-db.php -reset-password admin -set-systemtype single"]
+    podSecurityContext:
+      runAsUser: 0
+      runAsGroup: 0
+    securityContext:
+      readOnlyRootFilesystem: false
+      allowPrivilegeEscalation: false
+      runAsNonRoot: false
+    envTpl:
+      SPOTWEB_DB_TYPE: "pdo_pgsql"
+      SPOTWEB_DB_NAME: "{{ .Values.postgresql.postgresqlDatabase }}"
+      SPOTWEB_DB_USER: "{{ .Values.postgresql.postgresqlUsername }}"
+      SPOTWEB_DB_PORT: "5432"
+    envValueFrom:
+      SPOTWEB_DB_PASS:
+        secretKeyRef:
+          name: dbcreds
+          key: postgresql-password
+      SPOTWEB_DB_HOST:
+        secretKeyRef:
+          name: dbcreds
+          key: plainhost
+
 securityContext:
   readOnlyRootFilesystem: false
   allowPrivilegeEscalation: false

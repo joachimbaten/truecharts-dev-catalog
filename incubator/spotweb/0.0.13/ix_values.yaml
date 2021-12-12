@@ -1,0 +1,48 @@
+image:
+  repository: erikdevries/spotweb
+  pullPolicy: IfNotPresent
+  tag: 337@sha256:0fa717378ca1c036d5fdaebdd27d2716b3404eb16b185e79392620fbb30be7eb
+
+# See more environment variables in the babybuddy documentation
+# https://github.com/linuxserver/docker-babybuddy#parameters
+env: {}
+  # TZ:
+
+envTpl:
+  DB_ENGINE: "pdo_mysql"
+  DB_NAME: "{{ .Values.mariadb.mariadbUsername }}"
+  DB_USER: "{{ .Values.mariadb.mariadbDatabase }}"
+  DB_PORT: "3306"
+
+envValueFrom:
+  DB_PASS:
+    secretKeyRef:
+      name: dbcreds
+      key: mariadb-password
+  DB_HOST:
+    secretKeyRef:
+      name: dbcreds
+      key: plainporthost
+
+securityContext:
+  readOnlyRootFilesystem: false
+  allowPrivilegeEscalation: false
+  runAsNonRoot: false
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+service:
+  main:
+    ports:
+      main:
+        port: 11000
+        targetPort: 80
+
+# Enabled mysql/mariadb
+mariadb:
+  enabled: true
+  existingSecret: "dbcreds"
+  mariadbUsername: spotweb
+  mariadbDatabase: spotweb

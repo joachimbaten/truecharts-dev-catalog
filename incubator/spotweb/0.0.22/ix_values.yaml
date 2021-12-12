@@ -26,9 +26,10 @@ envValueFrom:
       key: plainhost
 
 initContainers:
-  1-init-db:
+  spotweb-init-db:
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-    command: ["php /var/www/spotweb/bin/upgrade-db.php -reset-password admin -set-systemtype single"]
+    command: 
+      - "/bin/php /var/www/spotweb/bin/upgrade-db.php -reset-password admin -set-systemtype single"
     securityContext:
       runAsUser: 0
       runAsGroup: 0

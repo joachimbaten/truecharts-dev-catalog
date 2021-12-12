@@ -44,12 +44,10 @@ persistence:
   config:
     enabled: true
     mountPath: "/config"
-  varrun:
-    enabled: true
 
 # Enabled postgres
 postgresql:
-  enabled: true
+  enabled: false
   existingSecret: "dbcreds"
   postgresqlUsername: spotweb
   postgresqlDatabase: spotweb

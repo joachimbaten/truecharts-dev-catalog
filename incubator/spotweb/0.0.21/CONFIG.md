@@ -1,6 +1,6 @@
 # spotweb
 
-![Version: 0.0.20](https://img.shields.io/badge/Version-0.0.20-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: php8.1](https://img.shields.io/badge/AppVersion-php8.1-informational?style=flat-square)
+![Version: 0.0.21](https://img.shields.io/badge/Version-0.0.21-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: php8.1](https://img.shields.io/badge/AppVersion-php8.1-informational?style=flat-square)
 
 Spotweb is a decentralized usenet community based on the Spotnet protocol.
 
@@ -46,9 +46,9 @@ Kubernetes: `>=1.16.0-0`
 | initContainers.1-init-db.env[0].name | string | `"SPOTWEB_DB_TYPE"` |  |
 | initContainers.1-init-db.env[0].value | string | `"pdo_pgsql"` |  |
 | initContainers.1-init-db.env[1].name | string | `"SPOTWEB_DB_NAME"` |  |
-| initContainers.1-init-db.env[1].value. | string | `nil` |  |
+| initContainers.1-init-db.env[1].value | string | `"{{ .Values.postgresql.postgresqlDatabase }}"` |  |
 | initContainers.1-init-db.env[2].name | string | `"SPOTWEB_DB_USER"` |  |
-| initContainers.1-init-db.env[2].value. | string | `nil` |  |
+| initContainers.1-init-db.env[2].value | string | `"{{ .Values.postgresql.postgresqlUsername }}"` |  |
 | initContainers.1-init-db.env[3].name | string | `"SPOTWEB_DB_PORT"` |  |
 | initContainers.1-init-db.env[3].value | string | `"5432"` |  |
 | initContainers.1-init-db.env[4].name | string | `"SPOTWEB_DB_PASS"` |  |

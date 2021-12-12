@@ -39,9 +39,9 @@ initContainers:
       - name: SPOTWEB_DB_TYPE
         value: "pdo_pgsql"
       - name: SPOTWEB_DB_NAME
-        value: {{ .Values.postgresql.postgresqlDatabase | quote }}
+        value: "{{ .Values.postgresql.postgresqlDatabase }}"
       - name: SPOTWEB_DB_USER
-        value: {{ .Values.postgresql.postgresqlUsername | quote }}
+        value: "{{ .Values.postgresql.postgresqlUsername }}"
       - name: SPOTWEB_DB_PORT
         value: "5432"
       - name: SPOTWEB_DB_PASS

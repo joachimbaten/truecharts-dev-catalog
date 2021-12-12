@@ -22,7 +22,7 @@ sources:
 - https://github.com/spotweb/spotweb
 - https://hub.docker.com/r/jgeusebroek/spotweb
 type: application
-version: 0.0.4
+version: 0.0.5
 annotations:
   truecharts.org/catagories: |
     - media

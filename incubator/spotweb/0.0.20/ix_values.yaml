@@ -36,16 +36,20 @@ initContainers:
       allowPrivilegeEscalation: false
       runAsNonRoot: false
     env:
-      SPOTWEB_DB_TYPE: "pdo_pgsql"
-      SPOTWEB_DB_NAME: "{{ .Values.postgresql.postgresqlDatabase }}"
-      SPOTWEB_DB_USER: "{{ .Values.postgresql.postgresqlUsername }}"
-      SPOTWEB_DB_PORT: "5432"
-      SPOTWEB_DB_PASS:
+      - name: SPOTWEB_DB_TYPE
+        value: "pdo_pgsql"
+      - name: SPOTWEB_DB_NAME
+        value: {{ .Values.postgresql.postgresqlDatabase | quote }}
+      - name: SPOTWEB_DB_USER
+        value: {{ .Values.postgresql.postgresqlUsername | quote }}
+      - name: SPOTWEB_DB_PORT
+        value: "5432"
+      - name: SPOTWEB_DB_PASS
         valueFrom:
           secretKeyRef:
             name: dbcreds
             key: postgresql-password
-      SPOTWEB_DB_HOST:
+      - name: SPOTWEB_DB_HOST
         valueFrom:
           secretKeyRef:
             name: dbcreds

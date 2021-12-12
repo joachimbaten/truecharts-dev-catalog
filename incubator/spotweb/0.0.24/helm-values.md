@@ -1,6 +1,6 @@
 # spotweb
 
-![Version: 0.0.23](https://img.shields.io/badge/Version-0.0.23-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: php8.1](https://img.shields.io/badge/AppVersion-php8.1-informational?style=flat-square)
+![Version: 0.0.24](https://img.shields.io/badge/Version-0.0.24-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Spotweb is a decentralized usenet community based on the Spotnet protocol.
 
@@ -41,7 +41,7 @@ Kubernetes: `>=1.16.0-0`
 | envValueFrom.SPOTWEB_DB_PASS.secretKeyRef.name | string | `"dbcreds"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"jgeusebroek/spotweb"` |  |
-| image.tag | string | `"php8.1@sha256:9970d2a23b1bfb3ca7736ed9c544320df843546fc7c76f6e7c0a7034adfe1148"` |  |
+| image.tag | string | `"latest@sha256:a92edf244cbb794fb5cd10d8b3ff808cbf7c0b689bbc01cb9911288f1b467518"` |  |
 | persistence.config.enabled | bool | `true` |  |
 | persistence.config.mountPath | string | `"/config"` |  |
 | podSecurityContext.runAsGroup | int | `0` |  |

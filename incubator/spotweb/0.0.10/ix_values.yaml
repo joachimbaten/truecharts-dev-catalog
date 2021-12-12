@@ -10,19 +10,23 @@ env: {}
 
 envTpl:
   SPOTWEB_DB_TYPE: "pdo_pgsql"
-  SPOTWEB_DB_NAME: "{{ .Values.postgresql.postgresqlDatabase }}"
-  SPOTWEB_DB_USER: "{{ .Values.postgresql.postgresqlUsername }}"
+  # SPOTWEB_DB_NAME: "{{ .Values.postgresql.postgresqlDatabase }}"
+  # SPOTWEB_DB_USER: "{{ .Values.postgresql.postgresqlUsername }}"
+  SPOTWEB_DB_NAME: "spotweb"
+  SPOTWEB_DB_USER: "spotweb"
   SPOTWEB_DB_PORT: "5432"
+  SPOTWEB_DB_PASS: "spotweb"
+  SPOTWEB_DB_HOST: "spotweb-db.ix-spotweb"
 
-envValueFrom:
-  SPOTWEB_DB_PASS:
-    secretKeyRef:
-      name: dbcreds
-      key: postgresql-password
-  SPOTWEB_DB_HOST:
-    secretKeyRef:
-      name: dbcreds
-      key: plainhost
+# envValueFrom:
+#   SPOTWEB_DB_PASS:
+#     secretKeyRef:
+#       name: dbcreds
+#       key: postgresql-password
+#   SPOTWEB_DB_HOST:
+#     secretKeyRef:
+#       name: dbcreds
+#       key: plainhost
 
 securityContext:
   readOnlyRootFilesystem: false

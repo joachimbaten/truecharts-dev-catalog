@@ -1,6 +1,6 @@
 # spotweb
 
-![Version: 0.0.9](https://img.shields.io/badge/Version-0.0.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 20210328](https://img.shields.io/badge/AppVersion-20210328-informational?style=flat-square)
+![Version: 0.0.10](https://img.shields.io/badge/Version-0.0.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 20210328](https://img.shields.io/badge/AppVersion-20210328-informational?style=flat-square)
 
 Spotweb is a decentralized usenet community based on the Spotnet protocol.
 
@@ -31,14 +31,12 @@ Kubernetes: `>=1.16.0-0`
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
-| envTpl.SPOTWEB_DB_NAME | string | `"{{ .Values.postgresql.postgresqlDatabase }}"` |  |
+| envTpl.SPOTWEB_DB_HOST | string | `"spotweb-db.ix-spotweb"` |  |
+| envTpl.SPOTWEB_DB_NAME | string | `"spotweb"` |  |
+| envTpl.SPOTWEB_DB_PASS | string | `"spotweb"` |  |
 | envTpl.SPOTWEB_DB_PORT | string | `"5432"` |  |
 | envTpl.SPOTWEB_DB_TYPE | string | `"pdo_pgsql"` |  |
-| envTpl.SPOTWEB_DB_USER | string | `"{{ .Values.postgresql.postgresqlUsername }}"` |  |
-| envValueFrom.SPOTWEB_DB_HOST.secretKeyRef.key | string | `"plainhost"` |  |
-| envValueFrom.SPOTWEB_DB_HOST.secretKeyRef.name | string | `"dbcreds"` |  |
-| envValueFrom.SPOTWEB_DB_PASS.secretKeyRef.key | string | `"postgresql-password"` |  |
-| envValueFrom.SPOTWEB_DB_PASS.secretKeyRef.name | string | `"dbcreds"` |  |
+| envTpl.SPOTWEB_DB_USER | string | `"spotweb"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"jgeusebroek/spotweb"` |  |
 | image.tag | string | `"20210328@sha256:e41482a844d8e5582239868d61ef8335dba156fa39d3f1c8ddc762ab214cf5b9"` |  |

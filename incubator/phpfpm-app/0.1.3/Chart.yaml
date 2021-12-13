@@ -1,7 +1,7 @@
 apiVersion: v2
 appVersion: "0.1.0"
 kubeVersion: '>=1.16.0-0'
-version: 0.1.2
+version: 0.1.3
 name: phpfpm-app
 description: A Sample app with multiple containers (phpfpm-app, mariadb, nginx).
 type: application

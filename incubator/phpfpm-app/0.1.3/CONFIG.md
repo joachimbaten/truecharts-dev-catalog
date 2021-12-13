@@ -1,6 +1,6 @@
 # phpfpm-app
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
 
 A Sample app with multiple containers (phpfpm-app, mariadb, nginx).
 
@@ -36,7 +36,7 @@ Kubernetes: `>=1.16.0-0`
 | additionalContainers.nginx.livenessProbe.initialDelaySeconds | int | `30` |  |
 | additionalContainers.nginx.livenessProbe.timeoutSeconds | int | `5` |  |
 | additionalContainers.nginx.name | string | `"nginx"` |  |
-| additionalContainers.nginx.ports[0].containerPort. | string | `nil` |  |
+| additionalContainers.nginx.ports[0].containerPort | int | `80` |  |
 | additionalContainers.nginx.ports[0].name | string | `"http"` |  |
 | additionalContainers.nginx.readinessProbe.httpGet.path | string | `"/"` |  |
 | additionalContainers.nginx.readinessProbe.httpGet.port | string | `"http"` |  |

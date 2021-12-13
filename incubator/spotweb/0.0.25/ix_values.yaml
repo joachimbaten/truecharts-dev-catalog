@@ -25,36 +25,39 @@ envValueFrom:
       name: dbcreds
       key: plainhost
 
-# initContainers:
-#   spotweb-init-db:
-#     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-#     command:
-#       - "/bin/php /var/www/spotweb/bin/upgrade-db.php -reset-password admin -set-systemtype single"
-#     securityContext:
-#       runAsUser: 0
-#       runAsGroup: 0
-#       readOnlyRootFilesystem: false
-#       allowPrivilegeEscalation: false
-#       runAsNonRoot: false
-#     env:
-#       - name: SPOTWEB_DB_TYPE
-#         value: "pdo_pgsql"
-#       - name: SPOTWEB_DB_NAME
-#         value: "{{ .Values.postgresql.postgresqlDatabase }}"
-#       - name: SPOTWEB_DB_USER
-#         value: "{{ .Values.postgresql.postgresqlUsername }}"
-#       - name: SPOTWEB_DB_PORT
-#         value: "5432"
-#       - name: SPOTWEB_DB_PASS
-#         valueFrom:
-#           secretKeyRef:
-#             name: dbcreds
-#             key: postgresql-password
-#       - name: SPOTWEB_DB_HOST
-#         valueFrom:
-#           secretKeyRef:
-#             name: dbcreds
-#             key: plainhost
+initContainers:
+  spotweb-init-db:
+    image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+    command: [ "php" ]
+    args:
+      - "-f"
+      - "/var/www/spotweb/bin/upgrade-db.php"
+      - "-- -reset-password admin -set-systemtype single"
+    securityContext:
+      runAsUser: 0
+      runAsGroup: 0
+      readOnlyRootFilesystem: false
+      allowPrivilegeEscalation: false
+      runAsNonRoot: false
+    env:
+      - name: SPOTWEB_DB_TYPE
+        value: "pdo_pgsql"
+      - name: SPOTWEB_DB_NAME
+        value: "{{ .Values.postgresql.postgresqlDatabase }}"
+      - name: SPOTWEB_DB_USER
+        value: "{{ .Values.postgresql.postgresqlUsername }}"
+      - name: SPOTWEB_DB_PORT
+        value: "5432"
+      - name: SPOTWEB_DB_PASS
+        valueFrom:
+          secretKeyRef:
+            name: dbcreds
+            key: postgresql-password
+      - name: SPOTWEB_DB_HOST
+        valueFrom:
+          secretKeyRef:
+            name: dbcreds
+            key: plainhost
 
 securityContext:
   readOnlyRootFilesystem: false

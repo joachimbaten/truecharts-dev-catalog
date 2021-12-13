@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "common.names.fullname" . }}-config
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+  nginx.conf: |-
+    server {
+      listen 0.0.0.0:{{ .Values.service.main.ports.main.targetPort }};
+      root /app;
+      location / {
+        index index.html index.php;
+      }
+      location ~ \.php$ {
+        fastcgi_pass {{ template "fullname" . }}-phpfpm:{{ .Values.service.phpfpm.ports.main.targetPort }};
+        fastcgi_index index.php;
+        include fastcgi.conf;
+      }
+    }

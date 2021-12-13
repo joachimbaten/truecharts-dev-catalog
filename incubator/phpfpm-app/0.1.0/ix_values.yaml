@@ -1,0 +1,62 @@
+image:
+  repository: jbaten/phpfpm-app
+  pullPolicy: IfNotPresent
+  tag: 0.1.0@sha256:f9b813042e5e35c36e19b67029f010b7b5f85688081549960b7eabbd351b72d7
+
+nginxImage:
+  # -- nginx sidecar image repository
+  repository: bitnami/nginx
+  # -- nginx sidecar image tag
+  tag: latest
+
+# See more environment variables in the babybuddy documentation
+# https://hub.docker.com/r/jgeusebroek/spotweb
+env:
+  # TZ:
+
+additionalContainers:
+  nginx:
+    name: nginx
+    image: "{{ .Values.nginxImage.repository }}:{{ .Values.nginxImage.tag }}"
+    ports:
+      - containerPort: "{{ .Values.service.main.ports.main.targetPort }}"
+        name: http
+    livenessProbe:
+      httpGet:
+        path: /
+        port: http
+      initialDelaySeconds: 30
+      timeoutSeconds: 5
+    readinessProbe:
+      httpGet:
+        path: /
+        port: http
+      initialDelaySeconds: 5
+      timeoutSeconds: 1
+    volumeMounts:
+      - name: nginx-config
+        mountPath: /opt/bitnami/nginx/conf/server_blocks
+
+service:
+  main:
+    ports:
+      main:
+        port: 11000
+        targetPort: 80
+  phpfpm:
+    ports:
+      main:
+        port: 11001
+        targetPort: 9000
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+
+# Enabled mariadb
+mariadb:
+  enabled: true
+  mariadbUsername: mini
+  mariadbDatabase: mini
+  existingSecret: "mariadbcreds"

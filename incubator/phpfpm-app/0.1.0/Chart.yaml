@@ -1,0 +1,33 @@
+apiVersion: v2
+appVersion: "0.1.0"
+kubeVersion: '>=1.16.0-0'
+version: 0.1.0
+name: phpfpm-app
+description: A Sample app with multiple containers (phpfpm-app, mariadb, nginx).
+type: application
+home: https://github.com/truecharts/apps/master/charts/incubator/spotweb
+icon: https://raw.githubusercontent.com/spotweb/spotweb/9af0ade0f618675206dcf1f744dbb3c1eae70e5a/images/spotnet.gif
+keywords:
+- usenet
+- spotweb
+- spotnet
+sources:
+- https://github.com/spotweb/spotweb
+- https://hub.docker.com/r/jgeusebroek/spotweb
+dependencies:
+- name: common
+  repository: https://truecharts.org
+  version: 8.9.18
+- condition: mariadb.enabled
+  name: mariadb
+  repository: https://truecharts.org/
+  version: 1.0.30
+maintainers:
+- email: info@truecharts.org
+  name: TrueCharts
+  url: https://truecharts.org
+annotations:
+  truecharts.org/catagories: |
+    - media
+  truecharts.org/SCALE-support: "true"
+  truecharts.org/grade: U

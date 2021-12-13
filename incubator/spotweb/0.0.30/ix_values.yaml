@@ -62,6 +62,9 @@ initContainers:
           secretKeyRef:
             name: dbcreds
             key: plainhost
+    volumeMounts:
+      - name: config
+        mountPath: "/config"
 
 securityContext:
   readOnlyRootFilesystem: false

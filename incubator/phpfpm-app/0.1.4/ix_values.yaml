@@ -21,18 +21,6 @@ additionalContainers:
     ports:
       - containerPort: 80
         name: http
-    livenessProbe:
-      httpGet:
-        path: /
-        port: http
-      initialDelaySeconds: 30
-      timeoutSeconds: 5
-    readinessProbe:
-      httpGet:
-        path: /
-        port: http
-      initialDelaySeconds: 5
-      timeoutSeconds: 1
     volumeMounts:
       - name: nginx-config
         mountPath: /opt/bitnami/nginx/conf/server_blocks
@@ -46,6 +34,7 @@ service:
   phpfpm:
     ports:
       main:
+        type: nodePort
         port: 11001
         targetPort: 9000
 

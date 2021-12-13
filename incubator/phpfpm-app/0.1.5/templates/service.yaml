@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "common.names.fullname" . }}-phpfpm
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.phpfpmService.type }}
+  ports:
+  - port: {{ .Values.phpfpmService.phpfpmPort }}
+    targetPort: {{ .Values.phpfpmService.phpfpmPort }}
+    protocol: TCP
+    name: {{ .Values.phpfpmService.name }}
+  selector:
+    app.kubernetes.io/name: {{ include "common.names.name" . }}-phpfpm

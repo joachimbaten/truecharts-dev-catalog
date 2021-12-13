@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "common.names.fullname" . }}-phpfpm
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+    {{- with .Values.controller.labels }}
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+  annotations:
+    {{- include "common.annotations.workload" . | nindent 4 }}
+    {{- with .Values.controller.annotations }}
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  replicas: {{ .Values.controller.replicas }}
+  selector:
+    matchLabels: 
+      app.kubernetes.io/name: {{ include "common.names.name" . }}-phpfpm
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "common.names.name" . }}-phpfpm
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ include "common.names.fullname" . }}-phpfpm
+        image: "{{ .Values.appImage.repository }}:{{ .Values.appImage.tag }}"
+        imagePullPolicy: {{ .Values.appImage.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.phpfpmService.phpfpmPort }}
+        resources:
+{{ toYaml .Values.resources | indent 4 }}
+        readinessProbe:
+          tcpSocket:
+            port: {{ .Values.phpfpmService.phpfpmPort }}
+          initialDelaySeconds: 10
+          timeoutSeconds: 5

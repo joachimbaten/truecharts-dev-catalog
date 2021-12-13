@@ -6,8 +6,7 @@
 persistence:
   nginx-config:
     enabled: "true"
-    mountPath: "/app/nginx-config.json"
-    subPath: "nginx-config.json"
+    mountPath: "/opt/bitnami/nginx/conf/server_blocks"
     type: "custom"
     volumeSpec:
       configMap:

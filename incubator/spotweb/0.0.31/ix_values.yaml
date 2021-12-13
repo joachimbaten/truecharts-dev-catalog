@@ -28,21 +28,6 @@ envValueFrom:
 initContainers:
   spotweb-init-db:
     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-    command: [ "php" ]
-    args:
-      - "-f"
-      - "/var/www/spotweb/bin/upgrade-db.php"
-      - "--"
-      - "-reset-password"
-      - "admin"
-      - "-set-systemtype"
-      - "single"
-    securityContext:
-      runAsUser: 0
-      runAsGroup: 0
-      readOnlyRootFilesystem: false
-      allowPrivilegeEscalation: false
-      runAsNonRoot: false
     env:
       - name: SPOTWEB_DB_TYPE
         value: "pdo_pgsql"
@@ -62,9 +47,22 @@ initContainers:
           secretKeyRef:
             name: dbcreds
             key: plainhost
-    volumeMounts:
-      - name: config
-        mountPath: "/config"
+    
+    command: [ "php" ]
+    args:
+      - "-f"
+      - "/var/www/spotweb/bin/upgrade-db.php"
+      - "--"
+      - "-reset-password"
+      - "admin"
+      - "-set-systemtype"
+      - "single"
+    securityContext:
+      runAsUser: 0
+      runAsGroup: 0
+      readOnlyRootFilesystem: false
+      allowPrivilegeEscalation: false
+      runAsNonRoot: false
 
 securityContext:
   readOnlyRootFilesystem: false

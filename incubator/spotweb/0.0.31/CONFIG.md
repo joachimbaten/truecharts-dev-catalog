@@ -1,6 +1,6 @@
 # spotweb
 
-![Version: 0.0.30](https://img.shields.io/badge/Version-0.0.30-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 0.0.31](https://img.shields.io/badge/Version-0.0.31-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Spotweb is a decentralized usenet community based on the Spotnet protocol.
 
@@ -70,8 +70,6 @@ Kubernetes: `>=1.16.0-0`
 | initContainers.spotweb-init-db.securityContext.runAsGroup | int | `0` |  |
 | initContainers.spotweb-init-db.securityContext.runAsNonRoot | bool | `false` |  |
 | initContainers.spotweb-init-db.securityContext.runAsUser | int | `0` |  |
-| initContainers.spotweb-init-db.volumeMounts[0].mountPath | string | `"/config"` |  |
-| initContainers.spotweb-init-db.volumeMounts[0].name | string | `"config"` |  |
 | persistence.config.enabled | bool | `true` |  |
 | persistence.config.mountPath | string | `"/config"` |  |
 | podSecurityContext.runAsGroup | int | `0` |  |

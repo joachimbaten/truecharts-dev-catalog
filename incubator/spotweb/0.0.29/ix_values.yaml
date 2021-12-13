@@ -32,7 +32,11 @@ initContainers:
     args:
       - "-f"
       - "/var/www/spotweb/bin/upgrade-db.php"
-      - "-- -reset-password admin -set-systemtype single"
+      - "--"
+      - "-reset-password"
+      - "admin"
+      - "-set-systemtype"
+      - "single"
     securityContext:
       runAsUser: 0
       runAsGroup: 0

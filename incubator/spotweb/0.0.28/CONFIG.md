@@ -1,6 +1,6 @@
 # spotweb
 
-![Version: 0.0.27](https://img.shields.io/badge/Version-0.0.27-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 0.0.28](https://img.shields.io/badge/Version-0.0.28-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Spotweb is a decentralized usenet community based on the Spotnet protocol.
 
@@ -44,7 +44,7 @@ Kubernetes: `>=1.16.0-0`
 | image.tag | string | `"latest@sha256:a92edf244cbb794fb5cd10d8b3ff808cbf7c0b689bbc01cb9911288f1b467518"` |  |
 | initContainers.spotweb-init-db.args[0] | string | `"-f"` |  |
 | initContainers.spotweb-init-db.args[1] | string | `"/var/www/spotweb/bin/upgrade-db.php"` |  |
-| initContainers.spotweb-init-db.args[2] | string | `"-reset-password admin -set-systemtype single"` |  |
+| initContainers.spotweb-init-db.args[2] | string | `"-- -reset-password admin -set-systemtype single"` |  |
 | initContainers.spotweb-init-db.command[0] | string | `"php"` |  |
 | initContainers.spotweb-init-db.env[0].name | string | `"SPOTWEB_DB_TYPE"` |  |
 | initContainers.spotweb-init-db.env[0].value | string | `"pdo_pgsql"` |  |

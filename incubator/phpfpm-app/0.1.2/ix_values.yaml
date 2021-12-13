@@ -19,7 +19,7 @@ additionalContainers:
     name: nginx
     image: "{{ .Values.nginxImage.repository }}:{{ .Values.nginxImage.tag }}"
     ports:
-      - containerPort: "{{ .Values.service.main.ports.main.targetPort }}"
+      - containerPort: {{ .Values.service.main.ports.main.targetPort }}
         name: http
     livenessProbe:
       httpGet:

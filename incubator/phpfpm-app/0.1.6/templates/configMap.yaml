@@ -14,7 +14,7 @@ data:
         index index.html index.php;
       }
       location ~ \.php$ {
-        fastcgi_pass {{ include "common.names.fullname" . }}-phpfpm:{{ .Values.service.phpfpm.ports.main.targetPort }};
+        fastcgi_pass {{ include "common.names.fullname" . }}-phpfpm:{{ .Values.phpfpmService.phpfpmPort }};
         fastcgi_index index.php;
         include fastcgi.conf;
       }

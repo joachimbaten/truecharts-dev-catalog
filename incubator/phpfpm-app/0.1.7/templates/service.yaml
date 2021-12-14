@@ -8,7 +8,7 @@ metadata:
 spec:
   type: {{ .Values.phpfpmService.type }}
   ports:
-  - port: {{ .Values.phpfpmService.port }}
+  - port: {{ .Values.phpfpmService.phpfpmPort }}
     targetPort: {{ .Values.phpfpmService.phpfpmPort }}
     protocol: TCP
     name: {{ .Values.phpfpmService.name }}

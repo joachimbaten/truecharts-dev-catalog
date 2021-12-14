@@ -1,6 +1,6 @@
 # phpfpm-app
 
-![Version: 0.1.6](https://img.shields.io/badge/Version-0.1.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 0.1.7](https://img.shields.io/badge/Version-0.1.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A Sample app with multiple containers (phpfpm-app, mariadb, nginx).
 
@@ -45,7 +45,6 @@ Kubernetes: `>=1.16.0-0`
 | persistence.config.mountPath | string | `"/config"` |  |
 | phpfpmService.name | string | `"phpfpm"` |  |
 | phpfpmService.phpfpmPort | int | `9000` |  |
-| phpfpmService.port | int | `11001` |  |
 | phpfpmService.type | string | `"NodePort"` |  |
 | service.main.ports.main.port | int | `11000` |  |
 | service.main.ports.main.targetPort | int | `80` |  |

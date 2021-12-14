@@ -31,8 +31,6 @@ spec:
         imagePullPolicy: {{ .Values.appImage.pullPolicy }}
         ports:
         - containerPort: {{ .Values.phpfpmService.phpfpmPort }}
-        resources:
-{{ toYaml .Values.resources | indent 4 }}
         readinessProbe:
           tcpSocket:
             port: {{ .Values.phpfpmService.phpfpmPort }}

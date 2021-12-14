@@ -45,6 +45,7 @@ Kubernetes: `>=1.16.0-0`
 | persistence.config.mountPath | string | `"/config"` |  |
 | phpfpmService.name | string | `"phpfpm"` |  |
 | phpfpmService.phpfpmPort | int | `9000` |  |
+| phpfpmService.port | int | `11001` |  |
 | phpfpmService.type | string | `"NodePort"` |  |
 | service.main.ports.main.port | int | `11000` |  |
 | service.main.ports.main.targetPort | int | `80` |  |

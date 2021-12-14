@@ -6,6 +6,11 @@
 
 
 
+<a name="phpfpm-app-0.1.6"></a>
+### phpfpm-app-0.1.6 (2021-12-13)
+
+
+
 <a name="phpfpm-app-0.1.5"></a>
 ### phpfpm-app-0.1.5 (2021-12-13)
 

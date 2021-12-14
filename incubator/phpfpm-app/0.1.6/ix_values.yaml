@@ -36,4 +36,5 @@ mariadb:
 phpfpmService:
   name: phpfpm
   type: NodePort
+  port: 11001
   phpfpmPort: 9000

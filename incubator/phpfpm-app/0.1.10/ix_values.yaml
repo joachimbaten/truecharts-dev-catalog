@@ -25,7 +25,7 @@ service:
       app.kubernetes.io/instance: '{{ .Release.Name }}'
   phpfpm:
     enabled: true
-    type: ClusterIp
+    type: ClusterIP
     ports:
       phpfpm:
         enabled: true

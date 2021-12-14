@@ -1,0 +1,67 @@
+image:
+  repository: jbaten/phpfpm-app
+  pullPolicy: IfNotPresent
+  tag: 0.1.0@sha256:f9b813042e5e35c36e19b67029f010b7b5f85688081549960b7eabbd351b72d7
+
+nginxImage:
+  repository: bitnami/nginx
+  pullPolicy: IfNotPresent
+  tag: latest
+
+# See more environment variables in the babybuddy documentation
+# https://hub.docker.com/r/jgeusebroek/spotweb
+env:
+  # TZ:
+
+service:
+  main:
+    type: Simple
+    ports:
+      main:
+        port: 11000
+        targetPort: 80
+    selector:
+      app.kubernetes.io/name: '{{ include "common.names.name" . }}-nginx'
+      app.kubernetes.io/instance: '{{ .Release.Name }}'
+  phpfpm:
+    enabled: true
+    type: ClusterIp
+    ports:
+      phpfpm:
+        enabled: true
+        port: 9000
+        targetPort: 9000
+
+probes:
+  liveness:
+    enabled: false
+  startup:
+    enabled: false
+  readiness:
+    enabled: true
+    custom: true
+    spec:
+      tcpSocket:
+        port: 9000
+      initialDelaySeconds: 10
+      timeoutSeconds: 5
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+
+# Enabled mariadb
+mariadb:
+  enabled: true
+  mariadbUsername: mini
+  mariadbDatabase: mini
+  existingSecret: "mariadbcreds"
+
+securityContext:
+  runAsNonRoot: false
+  readOnlyRootFilesystem: false
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0

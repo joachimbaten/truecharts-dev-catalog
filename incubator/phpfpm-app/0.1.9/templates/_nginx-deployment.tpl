@@ -58,11 +58,11 @@ spec:
         {{- with $resources }}
           {{- toYaml . | nindent 10 }}
         {{- end }}
-      volumeMounts:
+        volumeMounts:
+          - name: nginx-config
+            mountPath: /opt/bitnami/nginx/conf/server_blocks
+      volumes:
         - name: nginx-config
-          mountPath: /opt/bitnami/nginx/conf/server_blocks
-    volumes:
-      - name: nginx-config
-        configMap:
-          name: {{ include "common.names.fullname" . }}-nginx-config
+          configMap:
+            name: {{ include "common.names.fullname" . }}-nginx-config
 {{- end }}
